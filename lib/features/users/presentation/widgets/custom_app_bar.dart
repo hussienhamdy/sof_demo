@@ -1,7 +1,6 @@
 // lib/common/widgets/custom_sliver_app_bar.dart
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // Ensure you import screenutil if using .sp
 
 class CustomAppBar extends StatelessWidget {
   final String title;
@@ -28,7 +27,6 @@ class CustomAppBar extends StatelessWidget {
       title: Text(title, style: TextStyle(color: Colors.white)),
       pinned: true,
       floating: false,
-      expandedHeight: 0.h,
       flexibleSpace: FlexibleSpaceBar(
         background: Container(color: Colors.black),
       ),

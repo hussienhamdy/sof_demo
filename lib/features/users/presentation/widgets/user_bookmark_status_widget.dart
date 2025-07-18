@@ -40,8 +40,8 @@ class UserBookmarkStatusWidget extends ConsumerWidget {
         onClick(ref, isBookmarked);
       },
       icon: isBookmarked
-          ? Icon(Icons.star, color: Colors.white, size: 24.sp)
-          : Icon(Icons.star_border_rounded, color: Colors.grey, size: 24.sp),
+          ? Icon(Icons.bookmark, color: Colors.white, size: 24.sp)
+          : Icon(Icons.bookmark_border, color: Colors.grey, size: 24.sp),
     );
   }
 }

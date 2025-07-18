@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sof_demo/features/users/domain/entities/get_user_reputation_state.dart';
 import 'package:sof_demo/features/users/presentation/providers/providers.dart';
 import 'package:sof_demo/features/users/presentation/widgets/custom_app_bar.dart';
+import 'package:sof_demo/features/users/presentation/widgets/pagination_loading.dart';
 import 'package:sof_demo/features/users/presentation/widgets/shimmer_list.dart';
 import 'package:sof_demo/features/users/presentation/widgets/user_reputation_list.dart';
 
@@ -71,19 +72,8 @@ class _UserReputationHistoryScreenState
                       UserReputationList(
                         reputations: getUserReputationState.reputations,
                       ),
-                      ValueListenableBuilder(
-                        valueListenable: _paginationLoadingNotifier,
-                        builder: (context, value, child) {
-                          if (value == true) {
-                            return SliverToBoxAdapter(
-                              child: Center(child: CircularProgressIndicator()),
-                            );
-                          } else {
-                            return const SliverToBoxAdapter(
-                              child: SizedBox.shrink(),
-                            );
-                          }
-                        },
+                      PaginationLoading(
+                        paginationLoadingNotifier: _paginationLoadingNotifier,
                       ),
                     ],
                   ),

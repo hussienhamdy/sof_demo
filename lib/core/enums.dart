@@ -10,6 +10,8 @@ enum ReputationHistoryType {
   answer_unaccepted,
 }
 
+enum BadgeType { bronze, silver, gold }
+
 class EnumHandler {
   static T? enumFromString<T>(Iterable<T> values, String? value) {
     if (value == null) {

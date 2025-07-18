@@ -8,7 +8,7 @@ class ShimmerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverList.builder(
-      itemCount: 4,
+      itemCount: 6,
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),

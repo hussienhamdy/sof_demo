@@ -6,6 +6,7 @@ import 'package:sof_demo/core/extensions.dart';
 import 'package:sof_demo/core/failures.dart';
 import 'package:sof_demo/features/users/data/datasource/users_local_datasource.dart';
 import 'package:sof_demo/features/users/data/datasource/users_remote_datasource.dart';
+import 'package:sof_demo/features/users/domain/entities/badge_count.dart';
 import 'package:sof_demo/features/users/domain/entities/get_user_reputation_state.dart';
 import 'package:sof_demo/features/users/domain/entities/get_users_state.dart';
 import 'package:sof_demo/features/users/domain/entities/user.dart';
@@ -27,6 +28,11 @@ class UsersRepositoryImpl implements UsersRepository {
               userId: element.userId,
               profileImage: element.profileImage,
               displayName: element.displayName,
+              badgeCount: BadgeCount(
+                bronzeCount: element.badgeCount.bronzeCount,
+                silverCount: element.badgeCount.silverCount,
+                goldCount: element.badgeCount.goldCount,
+              ),
             ),
           )
           .toList();
@@ -119,6 +125,11 @@ class UsersRepositoryImpl implements UsersRepository {
               userId: element.userId,
               profileImage: element.profileImage,
               displayName: element.displayName,
+              badgeCount: BadgeCount(
+                bronzeCount: element.badgeCount.bronzeCount,
+                silverCount: element.badgeCount.silverCount,
+                goldCount: element.badgeCount.goldCount,
+              ),
             ),
           )
           .toList();

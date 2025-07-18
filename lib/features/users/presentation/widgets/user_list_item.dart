@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sof_demo/core/app_colors.dart';
+import 'package:sof_demo/core/enums.dart';
 import 'package:sof_demo/core/routes.dart';
 import 'package:sof_demo/features/users/domain/entities/user.dart';
+import 'package:sof_demo/features/users/presentation/widgets/badge_count.dart';
 import 'package:sof_demo/features/users/presentation/widgets/user_bookmark_status_widget.dart';
 
 class UserListItem extends StatelessWidget {
@@ -25,10 +27,12 @@ class UserListItem extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircleAvatar(
                       child: CachedNetworkImage(
@@ -40,11 +44,35 @@ class UserListItem extends StatelessWidget {
                         },
                       ),
                     ),
-                    SizedBox(width: 10.w),
+                    SizedBox(width: 20.w),
                     Flexible(
-                      child: Text(
-                        user.displayName,
-                        style: TextStyle(color: Colors.white),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            user.displayName,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          SizedBox(height: 10.h),
+                          Row(
+                            children: [
+                              BadgeCount(
+                                badgeType: BadgeType.bronze,
+                                count: user.badgeCount.bronzeCount,
+                              ),
+                              SizedBox(width: 10.w),
+                              BadgeCount(
+                                badgeType: BadgeType.silver,
+                                count: user.badgeCount.silverCount,
+                              ),
+                              SizedBox(width: 10.w),
+                              BadgeCount(
+                                badgeType: BadgeType.gold,
+                                count: user.badgeCount.goldCount,
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ],
