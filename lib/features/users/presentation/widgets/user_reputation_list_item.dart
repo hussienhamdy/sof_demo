@@ -31,11 +31,7 @@ class UserReputationListItem extends StatelessWidget {
                 SizedBox(height: 4.h),
                 Text(
                   reputation.reputationChange.toString(),
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                  style: TextTheme.of(context).bodyLarge,
                 ),
               ],
             ),
@@ -47,16 +43,12 @@ class UserReputationListItem extends StatelessWidget {
                 children: [
                   Text(
                     reputation.reputationHistoryType.displayName,
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+                    style: TextTheme.of(context).bodyLarge,
                   ),
                   SizedBox(height: 4.h),
                   Text(
                     reputation.creationDate.formattedDate,
-                    style: TextStyle(fontSize: 13.sp, color: Colors.grey[600]),
+                    style: TextTheme.of(context).bodyMedium,
                   ),
                 ],
               ),
@@ -70,10 +62,7 @@ class UserReputationListItem extends StatelessWidget {
                   Icon(Icons.link, color: Colors.blueGrey[300], size: 18.sp),
                   Text(
                     'Post ID: ${reputation.postId}',
-                    style: TextStyle(
-                      fontSize: 11.sp,
-                      color: Colors.blueGrey[400],
-                    ),
+                    style: TextTheme.of(context).bodySmall,
                   ),
                 ],
               ),

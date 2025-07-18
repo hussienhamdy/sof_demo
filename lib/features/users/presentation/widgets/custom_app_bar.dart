@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget {
             )
           : null,
       backgroundColor: Colors.black,
-      title: Text(title, style: TextStyle(color: Colors.white)),
+      title: Text(title, style: TextTheme.of(context).headlineLarge),
       pinned: true,
       floating: false,
       flexibleSpace: FlexibleSpaceBar(

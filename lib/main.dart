@@ -26,6 +26,17 @@ class MyApp extends StatelessWidget {
       title: 'SOF Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+        textTheme: TextTheme(
+          headlineLarge: TextStyle(
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          bodyLarge: TextStyle(fontSize: 16.sp, color: Colors.white),
+          bodyMedium: TextStyle(fontSize: 14.sp, color: Colors.grey[600]),
+          bodySmall: TextStyle(fontSize: 12.sp, color: Colors.blueGrey[400]),
+        ),
       ),
       onGenerateRoute: (RouteSettings settings) =>
           Routes().onGenerateRoute(settings),

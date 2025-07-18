@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sof_demo/features/users/domain/entities/get_users_state.dart';
 import 'package:sof_demo/features/users/presentation/providers/providers.dart';
 import 'package:sof_demo/features/users/presentation/widgets/custom_app_bar.dart';
+import 'package:sof_demo/features/users/presentation/widgets/empty_bookmarks.dart';
 import 'package:sof_demo/features/users/presentation/widgets/pagination_loading.dart';
 import 'package:sof_demo/features/users/presentation/widgets/users_list.dart';
 
@@ -85,7 +86,10 @@ class _BookmarkedUsersScreenState extends ConsumerState<BookmarkedUsersScreen> {
             state.when(
               data: (GetUsersState getUsersState) => SliverMainAxisGroup(
                 slivers: [
-                  UsersList(users: getUsersState.users),
+                  if (getUsersState.users.isEmpty)
+                    const SliverFillRemaining(child: EmptyBookmarks()),
+                  if (getUsersState.users.isNotEmpty)
+                    UsersList(users: getUsersState.users),
                   PaginationLoading(
                     paginationLoadingNotifier: _paginationLoadingNotifier,
                   ),

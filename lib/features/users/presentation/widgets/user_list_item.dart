@@ -51,7 +51,7 @@ class UserListItem extends StatelessWidget {
                         children: [
                           Text(
                             user.displayName,
-                            style: TextStyle(color: Colors.white),
+                            style: TextTheme.of(context).bodyLarge,
                           ),
                           SizedBox(height: 10.h),
                           Row(

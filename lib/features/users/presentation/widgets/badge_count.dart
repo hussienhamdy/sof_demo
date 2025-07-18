@@ -19,7 +19,9 @@ class BadgeCount extends StatelessWidget {
         SizedBox(height: 4.h),
         Text(
           '$count',
-          style: TextStyle(fontSize: 12.sp, color: Colors.grey[300]),
+          style: TextTheme.of(
+            context,
+          ).bodySmall?.copyWith(color: Colors.grey[300]),
         ),
       ],
     );
