@@ -48,7 +48,7 @@ class UserReputationListItem extends StatelessWidget {
                   SizedBox(height: 4.h),
                   Text(
                     reputation.creationDate.formattedDate,
-                    style: TextTheme.of(context).bodyMedium,
+                    style: TextTheme.of(context).bodySmall,
                   ),
                 ],
               ),
@@ -62,7 +62,7 @@ class UserReputationListItem extends StatelessWidget {
                   Icon(Icons.link, color: Colors.blueGrey[300], size: 18.sp),
                   Text(
                     'Post ID: ${reputation.postId}',
-                    style: TextTheme.of(context).bodySmall,
+                    style: TextTheme.of(context).labelSmall,
                   ),
                 ],
               ),

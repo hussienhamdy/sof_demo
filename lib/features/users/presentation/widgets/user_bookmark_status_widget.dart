@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sof_demo/core/presentation/widgets/custom_popup.dart';
 import 'package:sof_demo/features/users/presentation/providers/providers.dart';
 
 class UserBookmarkStatusWidget extends ConsumerWidget {
   final int userId;
   const UserBookmarkStatusWidget({super.key, required this.userId});
 
-  void onClick(WidgetRef ref, bool isbookmarked) {
-    ref
-        .read(changeUserBookmarkStatusStateNotifierProvider.notifier)
-        .changeUserBookmarkStatus(userId, isbookmarked);
+  void onClick(BuildContext context, WidgetRef ref, bool isbookmarked) async {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      enableDrag: true,
+      isDismissible: true,
+      useRootNavigator: true,
+      isScrollControlled: true,
+      builder: (context) => CustomPopup(
+        title: "User Bookmark",
+        subtitle: "Are you sure you want to change the bookmark status?",
+        onConfirm: () {
+          ref
+              .read(changeUserBookmarkStatusStateNotifierProvider.notifier)
+              .changeUserBookmarkStatus(userId, isbookmarked);
+        },
+      ),
+    );
   }
 
   @override
@@ -37,7 +52,7 @@ class UserBookmarkStatusWidget extends ConsumerWidget {
 
     return IconButton(
       onPressed: () {
-        onClick(ref, isBookmarked);
+        onClick(context, ref, isBookmarked);
       },
       icon: isBookmarked
           ? Icon(Icons.bookmark, color: Colors.white, size: 24.sp)

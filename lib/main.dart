@@ -21,33 +21,40 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'SOF Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        textTheme: TextTheme(
-          headlineLarge: TextStyle(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'SOF Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+            textTheme: TextTheme(
+              headlineLarge: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+              bodyLarge: TextStyle(fontSize: 16.sp, color: Colors.white),
+              bodyMedium: TextStyle(fontSize: 14.sp, color: Colors.grey[600]),
+              bodySmall: TextStyle(
+                fontSize: 12.sp,
+                color: Colors.blueGrey[400],
+              ),
+              labelSmall: TextStyle(
+                fontSize: 10.sp,
+                color: Colors.blueGrey[400],
+              ),
+            ),
           ),
-          bodyLarge: TextStyle(fontSize: 16.sp, color: Colors.white),
-          bodyMedium: TextStyle(fontSize: 14.sp, color: Colors.grey[600]),
-          bodySmall: TextStyle(fontSize: 12.sp, color: Colors.blueGrey[400]),
-        ),
-      ),
-      onGenerateRoute: (RouteSettings settings) =>
-          Routes().onGenerateRoute(settings),
-      builder: (ctx, child) {
-        ScreenUtil.init(ctx, designSize: const Size(375, 812));
-        return MediaQuery(
-          data: MediaQuery.of(ctx).copyWith(textScaler: TextScaler.linear(1.0)),
-          child: child!,
+          onGenerateRoute: (RouteSettings settings) =>
+              Routes().onGenerateRoute(settings),
+          home: UsersScreen(),
         );
       },
-      home: UsersScreen(),
     );
   }
 }

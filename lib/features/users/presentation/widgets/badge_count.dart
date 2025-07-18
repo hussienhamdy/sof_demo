@@ -17,12 +17,7 @@ class BadgeCount extends StatelessWidget {
         if (badgeType == BadgeType.gold)
           Icon(Icons.star, color: Colors.yellow, size: 16.sp),
         SizedBox(height: 4.h),
-        Text(
-          '$count',
-          style: TextTheme.of(
-            context,
-          ).bodySmall?.copyWith(color: Colors.grey[300]),
-        ),
+        Text('$count', style: TextTheme.of(context).bodySmall),
       ],
     );
   }
