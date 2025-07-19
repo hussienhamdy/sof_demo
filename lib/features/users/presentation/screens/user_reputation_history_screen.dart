@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sof_demo/core/failures.dart';
+import 'package:sof_demo/core/presentation/widgets/general_error_widget.dart';
 import 'package:sof_demo/features/users/domain/entities/get_user_reputation_state.dart';
 import 'package:sof_demo/features/users/presentation/providers/providers.dart';
 import 'package:sof_demo/features/users/presentation/widgets/custom_app_bar.dart';
@@ -77,8 +79,16 @@ class _UserReputationHistoryScreenState
                       ),
                     ],
                   ),
-              error: (error, stackTrace) =>
-                  SliverFillRemaining(child: Text(error.toString())),
+              error: (error, stackTrace) => SliverFillRemaining(
+                child: GeneralErrorWidget(
+                  failure: error as Failure,
+                  onRetry: () {
+                    ref
+                        .read(getUserReputationsStateNotifierProvider.notifier)
+                        .getUserReputations(widget.userId);
+                  },
+                ),
+              ),
               loading: () => const ShimmerList(),
             ),
           ],

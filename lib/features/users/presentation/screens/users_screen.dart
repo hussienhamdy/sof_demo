@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sof_demo/core/failures.dart';
+import 'package:sof_demo/core/presentation/widgets/general_error_widget.dart';
 import 'package:sof_demo/core/routes.dart';
 import 'package:sof_demo/features/users/domain/entities/get_users_state.dart';
 import 'package:sof_demo/features/users/presentation/providers/providers.dart';
@@ -83,8 +85,14 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
                   ),
                 ],
               ),
-              error: (error, stackTrace) =>
-                  SliverFillRemaining(child: Text(error.toString())),
+              error: (error, stackTrace) => SliverFillRemaining(
+                child: GeneralErrorWidget(
+                  failure: error as Failure,
+                  onRetry: () {
+                    ref.read(getUsersStateNotifierProvider.notifier).getUsers();
+                  },
+                ),
+              ),
               loading: () => const ShimmerList(),
             ),
           ],

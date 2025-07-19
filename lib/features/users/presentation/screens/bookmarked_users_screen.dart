@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sof_demo/core/failures.dart';
+import 'package:sof_demo/core/presentation/widgets/general_error_widget.dart';
 import 'package:sof_demo/features/users/domain/entities/get_users_state.dart';
 import 'package:sof_demo/features/users/presentation/providers/providers.dart';
 import 'package:sof_demo/features/users/presentation/widgets/custom_app_bar.dart';
@@ -95,8 +97,27 @@ class _BookmarkedUsersScreenState extends ConsumerState<BookmarkedUsersScreen> {
                   ),
                 ],
               ),
-              error: (error, stackTrace) =>
-                  SliverFillRemaining(child: Text(error.toString())),
+              error: (error, stackTrace) {
+                return SliverFillRemaining(
+                  child: GeneralErrorWidget(
+                    failure: error as Failure,
+                    onRetry: () {
+                      Set<int>? set = ref
+                          .watch(
+                            getBookmarkedUsersIdsStatusStateNotifierProvider,
+                          )
+                          .asData
+                          ?.value;
+                      ref
+                          .read(
+                            getBookmarkedUsersStatusStateNotifierProvider
+                                .notifier,
+                          )
+                          .getUsersByIds(set?.toList() ?? []);
+                    },
+                  ),
+                );
+              },
               loading: () => const SliverFillRemaining(
                 child: Center(child: CircularProgressIndicator()),
               ),
